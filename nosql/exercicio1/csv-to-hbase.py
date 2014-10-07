@@ -1,3 +1,5 @@
+import os.path
+
 with open('search.csv','r') as f: 
 	
 	input = f.readline()
@@ -12,18 +14,22 @@ with open('search.csv','r') as f:
 	putCmdList = ""
 	
 	for line in f:
+		
 		tokens = line.split(',')
 		putCmd = "put 'search', "
-		rowkey = ""
-		for i in range(len(tokens)):
-			if(cols[i]=="rowkey"):
-				rowkey  = "'"+tokens[i].strip()+"' ,"
-			else:
-				putCmd = rowkey+ ", '"+cols[i]+"','"+tokens[i].strip()+"'\n"
+		rowkey = tokens[0]
+		
+		for i in range(1,len(tokens)):
+			putCmd = rowkey+ ", '"+cols[i-1]+"','"+tokens[i].strip()+"'"
 		putCmdList = putCmdList + putCmd
+	
+filename = "output/search-hbase.csv"
 
-	with open('search-hbase.csv','r+') as g:
-		g.write(createSearch)
-		g.write('\n')
-		g.write(putCmdList)
+if not os.path.exists(os.path.dirname(filename)):
+    os.makedirs(os.path.dirname(filename), 0777)
+
+with open(filename,'w+') as g:
+	g.write(createSearch)
+	g.write('\n')
+	g.write(putCmdList)
 	
