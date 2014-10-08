@@ -5,9 +5,11 @@ inputFile = sys.argv[1]
 with open(inputFile,'r') as f: 
 	
 	tableName = inputFile.split('.')[0]
-	
-	searchStr = "create '"+tableName+"' , 'CF_Data', 'CF_Meta', 'CF_Rank'"
-	
+	if(tableName=='search'):
+		searchStr = "create 'search' , 'CF_Data', 'CF_Meta', 'CF_Rank'"
+	elif(tableName=='page'):
+		searchStr = "create 'page' , 'CF_Raw', 'CF_Metadata', 'CF_Links' , 'CF_Rank'"
+		
 	input = f.readline()
 	rowkey = input.split(',')[2].strip()
 	
