@@ -1,0 +1,27 @@
+{"rowkey":",www.cetax.com.br/o-que-e-big-data36679.502740193.3387",
+  "CF_Raw": [
+	{"body":"<html><head><title>Saiba tudo sobre Big Data.</title></head><body>Baixe Nossos Artigos; Cursos; etc.</body></html>"},
+	{"text":"Saiba tudo sobre Big Data. Baixe Nossos Artigos; Cursos; etc."},
+	{"createDate":"02/06/2000 12:03:53"},
+	{"lastUpdateDate":"15/01/2010 08:07:44"},
+	{"pageImages": ["www.cetax.com.br/bigdata1.jpg","www.cetax.com.br/bigdata2.jpg"] },
+	{"url":"www.cetax.com.br/o-que-e-big-data"}
+  ] ,
+  "CF_Metadata": [
+	{"language":"pt_BR"},
+	{"country":"br"},
+	{"srcDomainPage":"www.cetax.com.br"},
+	{"pageFileExtension":"html"},
+	{"urlReferer":"www.google.com"}
+   ],
+   "CF_Links":[
+	{"linksFromPage":["http://www.linksource1.com","http://www.linksource2.com","http://www.linksource3.com"]},
+	{"LinksToPage":["http://www.linkdest9991.com","http://www.linkdest9992.com","http://www.linkdest9993.com"]}
+	
+   ],	
+   "CF_Rank":[
+	{"PageRank":"0.2035774618"},
+	{"DomainRank":"0.1875376711"},
+	{"lastRankGenerationDate":"30/11/2006 11:30:03"}
+   ]
+}
