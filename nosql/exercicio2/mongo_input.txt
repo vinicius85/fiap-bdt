@@ -1,0 +1,44 @@
+{
+  "_id": "978-1423420453",
+  "title": "Iron Maiden Bass Anthology (Bass Recorded Versions)",
+  "author": "iron maiden",
+  "url": "http://www.amazon.com/Iron-Maiden-Anthology-Recorded-Versions/dp/1423420454/ref=sr_1_2?ie=UTF8&qid=1412897110&sr=8-2&keywords=bass+anthology",
+  "image": "http://ecx.images-amazon.com/images/I/513bohYnZNL.jpg",
+  "prices": [
+    {
+      "type": "new",
+      "quantity": "17",
+      "price": "15.33",
+      "currency": "dolar"
+    },
+    {
+      "type": "used",
+      "quantity": "120",
+      "price": "9.33",
+      "currency": "dolar"
+    }
+  ],
+  "description": "(Bass Recorded Versions). This book of note-for-note Steve Harris bass transcriptions is a must-have for any rock bassist. 20 classics, including: Aces High * Can I Play with Madness * Evil That Men Do * Fear of the Dark * Iron Maiden * No Prayer for the Dying * The Number of the Beast * Run to the Hills * Running Free * The Trooper * Wrathchild * and more",
+  "Product details": {
+    "series": "Bass Recorded Versions",
+    "Paperback": "200 pages",
+    "Publisher": "Hal Leonard",
+    "Year": "2009",
+    "Dimensions": {
+      "width": "0.2",
+      "height": "8.3",
+      "measure": "inches"
+    },
+    "shipping": {
+      "weight": 1.4,
+      "measure": "pounds"
+    },
+    "best_seller_rank": 776801,
+    "ISBN-13": "978-1423420453"
+  },
+  "category": "books",
+  "customer_reviews_avg": "4.3"
+}
+
+db.books.save()
+db.books.find({"_id":"978-1423420453"})
