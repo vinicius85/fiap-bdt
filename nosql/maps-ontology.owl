@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#">
+
+  <owl:Ontology rdf:about="GoogleMapsModelling">
+      <rdfs:label>Ontologia para ligar dois pontos em um mapa</rdfs:label>
+      <rdfs:comment>Exercicio 5 da disciplina BigData - Aluno: Tiago Vinicius</rdfs:comment>
+  </owl:Ontology>
+  
+  <owl:Class>
+      <rdfs:label>Via</rdfs:label>
+  </owl:Class>
+  
+  <owl:Class>
+      <rdfs:label>Rua</rdfs:label>
+      <rdfs:subClassOf>Via</rdfs:subClassOf>
+  </owl:Class>
+  
+  <owl:Class>
+      <rdfs:label>Avenida</rdfs:label>
+      <rdfs:subClassOf>Via</rdfs:subClassOf>
+  </owl:Class>
+  
+  <owl:Class>
+      <rdfs:label>Ponto</rdfs:label>
+  </owl:Class>
+  
+  <owl:Class>
+      <rdfs:label>Edificio</rdfs:label>
+      <rdfs:subClassOf>Ponto</rdfs:subClassOf>
+  </owl:Class>
+  
+  <owl:Class>
+      <rdfs:label>Terminal</rdfs:label>
+      <rdfs:subClassOf>Ponto</rdfs:subClassOf>
+  </owl:Class>
+  
+  <owl:Class>
+      <rdfs:label>Onibus</rdfs:label>
+      <rdfs:subClassOf>Terminal</rdfs:subClassOf>
+  </owl:Class>
+  
+  <owl:Class>
+      <rdfs:label>Metro</rdfs:label>
+      <rdfs:subClassOf>Terminal</rdfs:subClassOf>
+  </owl:Class>
+  
+  <owl:Class>
+      <rdfs:label>Agencia Bancaria</rdfs:label>
+      <rdfs:subClassOf>Ponto</rdfs:subClassOf>
+  </owl:Class>
+
+</rdf>
