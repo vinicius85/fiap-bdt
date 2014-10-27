@@ -39,14 +39,12 @@ public class Maps {
 		DatatypeProperty direita = ontModel.createDatatypeProperty(namespace + "Vire a direita");
 		DatatypeProperty esquerda = ontModel.createDatatypeProperty(namespace + "Vire a esquerda");
 		DatatypeProperty atravesse = ontModel.createDatatypeProperty(namespace + "Atravesse");
+		DatatypeProperty destino = ontModel.createDatatypeProperty(namespace + "Chegue ao destino");
 		siga.setDomain(direcao);
 		direita.setDomain(direcao);
 		esquerda.setDomain(direcao);
 		atravesse.setDomain(direcao);
-
-		OntClass coordenadas = ontModel.createClass(namespace + "Coordenadas");
-		DatatypeProperty destino = ontModel.createDatatypeProperty(namespace + "Chegue ao destino");
-		destino.setDomain(coordenadas);
+		destino.setDomain(direcao);
 
 		Ontology ontology = ontModel.createOntology(namespace);
 
