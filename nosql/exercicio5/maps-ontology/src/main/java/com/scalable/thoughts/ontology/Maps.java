@@ -76,6 +76,11 @@ public class Maps {
 		Property verbo2 = ontModel.getProperty(namespace + "Atravesse");
 		Individual objeto2 = buildIndividual(ontology, "Rua", "dos Pinheiros");
 		statements.add(ontModel.createStatement(sujeito2, verbo2, objeto2));
+		
+		Individual sujeito7 = buildIndividual(ontology, "Rua", "dos Pinheiros");
+		Property verbo7 = ontModel.getProperty(namespace + "Siga em frente");
+		Individual objeto7 = buildIndividual(ontology, "Avenida", "Faria Lima");
+		statements.add(ontModel.createStatement(sujeito7, verbo7, objeto7));
 
 		Individual sujeito3 = buildIndividual(ontology, "Avenida", "Faria Lima");
 		Property verbo3 = ontModel.getProperty(namespace + "Siga em frente");
