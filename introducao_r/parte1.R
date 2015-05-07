@@ -58,7 +58,7 @@ mean(x)
 #A.10
 x <- seq(-5,5)
 x<- x[x != 0]
-barplot(x)
+plot(sin(x)/x, type = 'l')
 
 #A.11
 x <-c('Australia','Austria','Belgium','Canada')
