@@ -22,21 +22,10 @@ mean(a$adj_price)
 summary(a)
 
 #ii
-data <- aapl
-f <- format(data$date, "%m")
-data <- cbind(data,f)
-
-v <- c()
-
-for(i in seq(1:12)){
-  total_mes <- subset(data, as.numeric(data$f)==i)
-  m <- mean(total_mes$adj_price)
-  v <- c(v,m)
-}
-
-names(v) <- c(1:12)
-barplot(v)
-abline(h=mean(v))
+data <- subset(aapl, format(aapl$date, "%Y") == "2010")
+ag <- aggregate(data, by = list(format(data$date, "%m")), mean)
+boxplot(data$adj_price ~ format(data$date, '%m'),col = 'red')
+abline(h=mean(ag$adj_price))
 
 #iii
 diff <- c()
