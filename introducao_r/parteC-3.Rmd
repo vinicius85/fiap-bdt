@@ -1,0 +1,23 @@
+---
+title: "Exercicio de R - Parte C.3"
+author: "Tiago Vinícius"
+date: "05/13/2015"
+output: html_document
+---
+
+#Dados de entrada
+```{r}
+x<-c(1:100)
+y1<-2*x
+y2<-x^2
+y3<-sqrt(x)
+y4<-sin(x)
+```
+
+#1. Regressão linear
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

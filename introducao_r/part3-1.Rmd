@@ -1,13 +1,13 @@
 ---
-title: "Ações da Apple"
-author: "Tiago Vinícius"
+title: "Acoes da Apple"
+author: "Tiago Vinicius"
 date: "07/05/2015"
 output: html_document
 ---
 
-O objetivo do relatório é fazer uma análise exploratória das ações da Apple. Essas informações foram obtidas através do dataset *aapl*, disponibilizado pela biblioteca **gcookbook**
+O objetivo do relatorio e fazer uma analise exploratoria das acoes da Apple. Essas informacoes foram obtidas atraves do dataset *aapl*, disponibilizado pela biblioteca **gcookbook**
 
-##Descrição do dataset
+##Descricao do dataset
 ```{r, warning=F, message=F}
 library(gcookbook)
 summary(aapl)
@@ -20,11 +20,11 @@ head(aapl)
 ```
 
 
-##Exemplo de gráfico
+##Exemplo de grafico
 
-Exemplo de gráfico. Comportamento das ações da Apple no ano de 2010. Em 27/01/2010 foi anunciado o lançamento do iPad, e desde então é possível verificar um aumento nas açoes.
+Exemplo de grafico. Comportamento das acoes da Apple no ano de 2010. Em 27/01/2010 foi anunciado o lancamento do iPad, e desde entao e possivel verificar um aumento nas acoes.
 
 ```{r, echo=FALSE}
 a <- subset(aapl, format(aapl$date, "%Y") == "2010")
-plot(a, type = 'l', main = 'Lançamento do ipad (Anunciado em 27/01/2010)', xlab = 'Meses do ano 2010', ylab = 'Preço das açoes')
+plot(a, type = 'l', main = 'Lancamento do ipad (Anunciado em 27/01/2010)', xlab = 'Meses do ano 2010', ylab = 'Preco das acoes')
 ```
