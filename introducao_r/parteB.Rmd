@@ -1,5 +1,12 @@
-#B.1
+---
+title: "Exercícios de R - Parte B"
+author: "Tiago Vinícius"
+date: "05/13/2015"
+output: html_document
+---
 
+#B.1
+```{r, warning=F,message=F}
 M <- matrix(0,5,5)
 
 l <- c(1:5)
@@ -12,22 +19,28 @@ x <- det(M)
 y <- det(t(M))
 
 trunc(x,0) == trunc(y,0)
+```
 
 #B.2
+```{r, warning=F,message=F}
 library(gcookbook)
 
 #i
 a <- subset(aapl, format(aapl$date, "%Y") == "2010")
 mean(a$adj_price)
 summary(a)
+```
 
 #ii
+```{r, warning=F,message=F}
 data <- subset(aapl, format(aapl$date, "%Y") == "2010")
 ag <- aggregate(data, by = list(format(data$date, "%m")), mean)
 boxplot(data$adj_price ~ format(data$date, '%m'),col = 'red')
 abline(h=mean(ag$adj_price))
+```
 
 #iii
+```{r, warning=F,message=F}
 diff <- c()
 v <- ag$adj_price
 for(i in seq(2:12)){
@@ -35,14 +48,19 @@ for(i in seq(2:12)){
 }
 plot(diff, type = 'l', xlab = 'meses', ylab = 'variacao do preco', col = 'red')
 abline(h=0)
+```
 
 #iv
-a <- subset(aapl, format(aapl$date, "%Y") == "2010")
-plot(a, type = 'l', main = 'Lan?amento do ipad (Anunciado em 27/01/2010)', xlab = 'Meses do ano 2010', ylab = 'Pre?o das a?oes')
+Com o lancamento do ipad, em janeiro de 2010, nota-se claramente que a tendência foi de aumento das acoes durante todo o ano de 2010.
 
+```{r, warning=F,message=F}
+a <- subset(aapl, format(aapl$date, "%Y") == "2010")
+plot(a, type = 'l', main = 'Lancamento do ipad (Anunciado em 27/01/2010)', xlab = 'Meses do ano 2010', ylab = 'Pre?o das a?oes')
+```
 
 
 #B.3
+```{r, warning=F,message=F}
 sao_disjuntos <- function(A,B){
   disjuntos <- T
   C <- A %in% B
@@ -63,3 +81,4 @@ A <- c(1,2,3)
 B <- c(4,5,6)
 
 sao_disjuntos(A,B)
+```
