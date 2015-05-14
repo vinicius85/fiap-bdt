@@ -5,10 +5,44 @@ date: "07/05/2015"
 output: html_document
 ---
 
-O objetivo....
+###Amostra
 
 ```{r}
 library(MASS)
 head(birthwt)
 ```
+
+
+###i. Histograma
+
+O histograma para o peso no nascimento
+
+```{r}
+bwt <- birthwt$bwt
+hist(bwt, col = 'red')
+```
+
+###ii. Análise exploratória
+
+Investigaçao das causas: Uso de cigarro durante a gravidez. Um fato interessante, aparentemente nao existe uma correlacao entre o fumo e o peso de nascimento do bebe.
+
+```{r, warning=F,message=F}
+library(ggplot2)
+smoke <- birthwt$smoke
+cor(bwt,smoke)
+
+g <- ggplot(birthwt, aes(x=smoke), xlim = c(0,1)) + geom_histogram()
+print(g)
+```
+
+Para o inicio da análise, calculamos a estatística sumária para cada variável do *dataset*:
+
+```{r}
+summary(birthwt[,unlist(lapply(birthwt, is.numeric))])
+```
+
+
+###iii. Conclusão
+
+A partir das análises, é possível visualizar que há indícios que as variáveis são as mais possíveis causas para o baixo peso no nascimento.
 

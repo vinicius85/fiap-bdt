@@ -1,6 +1,6 @@
 ---
-title: "Acoes da Apple"
-author: "Tiago Vinicius"
+title: "Ações da Apple"
+author: "Tiago Vinícius"
 date: "07/05/2015"
 output: html_document
 ---
