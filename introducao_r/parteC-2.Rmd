@@ -5,44 +5,96 @@ date: "07/05/2015"
 output: html_document
 ---
 
+<br>
+
 ###Amostra
+
+O dataset utilizado para a análise será o *birthwt*. Segue uma amostra da base:
 
 ```{r}
 library(MASS)
 head(birthwt)
 ```
 
+<br>
 
 ###i. Histograma
 
-O histograma para o peso no nascimento
+A média de peso dos bebês é de aproximadamente 2.97kg. O valor abaixo de 2.5kg é considerado abaixo do esperado. Segue o histograma para o peso no nascimento dos bebês:
 
 ```{r}
 bwt <- birthwt$bwt
+mean(bwt)
 hist(bwt, col = 'red')
 ```
 
-###ii. An�lise explorat�ria
+<br>
 
-Investiga�ao das causas: Uso de cigarro durante a gravidez. Um fato interessante, aparentemente nao existe uma correlacao entre o fumo e o peso de nascimento do bebe.
+###ii. Analise exploratória
 
-```{r, warning=F,message=F}
-library(ggplot2)
-smoke <- birthwt$smoke
-cor(bwt,smoke)
-
-g <- ggplot(birthwt, aes(x=smoke), xlim = c(0,1)) + geom_histogram()
-print(g)
-```
-
-Para o inicio da an�lise, calculamos a estat�stica sum�ria para cada vari�vel do *dataset*:
+Para o inicio da analise, calculamos a media, desvio padrão e mediana para todas as variáveis numéricas do *dataset*:
 
 ```{r}
-summary(birthwt[,unlist(lapply(birthwt, is.numeric))])
+num_variables <- birthwt[,c('age','bwt','lwt','ptl','ftv')]
+meanList <- lapply(num_variables,mean)
+medianList <- lapply(num_variables,median)
+stdevList <- lapply(num_variables,sd)
+
+df <- data.frame(round(unlist(meanList),2), unlist(medianList), round(unlist(stdevList),2))
+names(df) <- c('media','mediana','desvio padrao')
+df
 ```
 
+<br>
 
-###iii. Conclus�o
+Para as variáveis categóricas *low, smoke, ht, ui*, foi calculada a frequência em relação a toda a população, onde 0 = Não, e 1 = Sim. A variável *proporcao* gerada é a proporção dos eventos ocorrerem ( Sim / (Sim+Não) ):
 
-A partir das an�lises, � poss�vel visualizar que h� ind�cios que as vari�veis s�o as mais poss�veis causas para o baixo peso no nascimento.
+```{r}
+cat_variables <- birthwt[,c('low','smoke','ht','ui')]
+modeList <- lapply(cat_variables,sum)
 
+df <- data.frame(unlist(modeList))
+df <- cbind(df, (nrow(birthwt) - df[,1]))
+df <- cbind(df, round(df[,1] / nrow(birthwt),2))
+
+names(df) <- c('sim', 'nao', 'proporcao')
+df
+```
+<br>
+
+Já a variável *race* que possui 3 valores: 1 = branca, 2 = negra e 3 = outras:
+```{r}
+race <- birthwt[,c('race')]
+raceF <- summary(as.factor(race))
+
+names(raceF) <- c('Branca', 'Negra', 'Outras')
+raceF
+```
+
+<br>
+
+####Histogramas
+
+A seguir, histogramas para todas as variáveis:
+
+```{r, warning=F,message=F}
+par(mfrow=c(2,5))
+hist(birthwt$smoke, col = 'blue', main = 'Mãe fumante', xlab = 'smoke')
+hist(birthwt$low, col = 'black',  main = 'Baixo peso', xlab = 'low')
+hist(birthwt$age, col = 'yellow', main = 'Idade da mãe', xlab = 'age')
+hist(birthwt$lwt, col = 'green', main = 'Peso da mãe', xlab = 'lwt')
+
+hist(birthwt$race, col = 'magenta', main = 'Raça da mãe', xlab = 'race')
+hist(birthwt$ptl, col = 'red', main = 'Partos prematuros', xlab = 'plt')
+hist(birthwt$ht, col = 'brown', main = 'Hipertensão', xlab = 'ht')
+hist(birthwt$ui, col = 'gray', main = 'Problema útero', xlab = 'ui')
+hist(birthwt$ftv, col = 'blue', main = 'Acompanhamento', xlab = 'ftv')
+```
+
+<br>
+
+###iii. Conclusão
+
+Ao analisar histogramas e a proporção entre a ocorrência dos eventos *low* e *smoke*, aparentemente existe uma grande correlação entre o peso do bebê ser baixo uma consequência do fato da mãe ser fumante.
+
+<br>
