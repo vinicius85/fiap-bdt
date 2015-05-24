@@ -24,7 +24,7 @@ head(aapl)
 
 Exemplo de grafico. Comportamento das acoes da Apple no ano de 2010. Em 27/01/2010 foi anunciado o lancamento do iPad, e desde entao e possivel verificar um aumento nas acoes.
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, results=T}
 a <- subset(aapl, format(aapl$date, "%Y") == "2010")
 plot(a, type = 'l', main = 'Lancamento do ipad (Anunciado em 27/01/2010)', xlab = 'Meses do ano 2010', ylab = 'Preco das acoes')
 ```
