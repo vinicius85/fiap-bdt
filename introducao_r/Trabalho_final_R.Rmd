@@ -1,0 +1,88 @@
+---
+title: "Introdução ao R: Trabalho final da disciplina"
+author: "Debora Miura RM 47435; Ernesto Miyakawa RM 47457; Júlio Ferreira RM 47477; Kleber Prado  RM 47189; Tiago Vinícius  RM 47294"
+date: "Thursday, May 28, 2015"
+output: html_document
+---
+
+<br>
+## 1. Introdução
+
+O trabalho visa avaliar o aprendizado do uso da plataforma analítica R utilizando para tanto o banco de dados histórico de informações chamado de World Development Indicators - The World Bank (http://data.worldbank.org/data-catalog/world-development-indicators)
+
+<br>
+###+1.1. Problema
+
+A segunda metade do século XX e as primeiras décadas do novo século têm sido marcadas por uma grande evolução da tecnologia em todos os campos do conhecimento e atividades humanas.
+O avanço da tecnologia proporcionou o avanço de alguns países que passaram por uma profunda transformação. Por outro lado, alguns países ainda estão em fase de transformação enquanto outros continuam muito miseráveis.
+
+<br>
+###+1.2. Propósito da Análise
+
+A observação dos indicadores de desenvolvimento permite comparar países que são considerados potências econômicas há muito tempo com países que ainda estão em fase de transformação e com isso avaliar áreas onde poderiam ser estimuladas a fim de acelerar o processo de desenvolvimento.
+Nesse micro estudo foram escolhidos o Reino Unido, como representante de potência econômica e o Brasil.
+O propósito da análise é comparar e identificar o quão distante ainda estamos do Reino Unido em termos de indicadores de desenvolvimento.
+
+<br>
+## 2. Dados Utilizados
+
+###+2.1 Descrição dos países
+
+####+2.1.1 Reino Unido
+
+O Reino Unido é regido por um sistema parlamentar, cuja sede está localizada na cidade de Londres, a capital, e por uma monarquia constitucional em que a rainha é a chefe de Estado.
+O país foi a primeira potência mundial no século XIX e primeira metade do século XX. Após a participação nas duas grandes guerras, o país passou por um declínio, mas hoje já é considerado como a sexta maior economia do mundo. Na segunda metade do s?culo XX se envolveu ainda num conflito armado com a Argentina durante o período de reformas sociais do governo da primeira ministra Margaret Thatcher. E mais recentemente tem apoiado militarmente os Estados Unidos da América nos conflitos no oriente m?dio.
+
+####+2.1.2 Brasil
+
+O maior país da América Latina, sendo o quinto maior do mundo em área territorial e população. Durante a primeira metade do século XX, no período de 1930 a 1945 o país viveu sob um regime de ditadura. Na segunda metade do século XX, entre os anos de 1964-1985, houve um novo período de governo ditatorial, sob o regime militar, retornando então ao sistema presidencialista.
+Atualmente, o país está entre as 10 maiores economias mundiais. Ao longo do século XX o país passou por diversos períodos de alta inflação:
+
+```
+-----------------------|-----------------------
+Período                | índice de Inflação
+-----------------------|-----------------------
+D?cada de 1930         | média anual de 6,1%
+D?cada de 1940         | média anual de 12,3%
+D?cada de 1950         | 19,5%
+D?cadas de 1960 e 1970 | 40,1%
+D?cada de 1980         | 330%
+Entre 1990 a 1994      | média anual de 764%
+Entre 1995 a 2000      | média anual de 8,6%
+-----------------------|-----------------------
+```
+
+######Fonte: http://pt.wikipedia.org/wiki/Infla%C3%A7%C3%A3o#Hist.C3.B3rico_do_quadro_inflacion.C3.A1rio_no_Brasil
+
+
+###+2.2 Indicadores e períodos analisados
+
+População Total
+Percentual da População com 0 a 14 anos de idade
+Percentual da População com 15 a 64 anos de idade
+Percentual da População com 65 anos idade ou mais
+PIB per capita (USD)
+Gastos em saúde per capita (USD)
+Percentual de Gastos em saúde per capita em relação ao PIB per capita
+Percentual da população com acesso a serviços sanitários
+Taxa de Mortalidade infantil (por 1000 nascidos)
+Expectativa de vida ao nascer
+
+<br>
+## 3. Análise Exploratória
+
+O objetivo é apresentar tendências e fatos importantes na análise. Usaremos as seguintes bibliotecas na análise:
+
+```{r}
+library(gcookbook)
+library(ggplot2)
+library(WDI)
+library(psych)
+library(plotrix)
+library(grid)
+library(gridExtra)
+```
+
+Período a avaliado: 1960 a 2010
+
+## 4. Conclus?o
