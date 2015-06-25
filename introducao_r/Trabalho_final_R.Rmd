@@ -2,38 +2,33 @@
 title: "Introdução ao R: Trabalho final da disciplina"
 author: "Debora Miura RM 47435; Ernesto Miyakawa RM 47457; Júlio Ferreira RM 47477; Kleber Prado  RM 47189; Tiago Vinícius  RM 47294"
 date: "Thursday, May 28, 2015"
-output: html_document
+output: word_document
 ---
 
 <br>
-## 1. Introdução
+
+###1. Introdução
 
 O trabalho visa avaliar o aprendizado do uso da plataforma analítica R utilizando para tanto o banco de dados histórico de informações chamado de World Development Indicators - The World Bank (http://data.worldbank.org/data-catalog/world-development-indicators)
 
 <br>
-###+1.1. Problema
 
-A segunda metade do século XX e as primeiras décadas do novo século têm sido marcadas por uma grande evolução da tecnologia em todos os campos do conhecimento e atividades humanas.
-O avanço da tecnologia proporcionou o avanço de alguns países que passaram por uma profunda transformação. Por outro lado, alguns países ainda estão em fase de transformação enquanto outros continuam muito miseráveis.
-
-<br>
-###+1.2. Propósito da Análise
+###2. Propósito da Análise
 
 A observação dos indicadores de desenvolvimento permite comparar países que são considerados potências econômicas há muito tempo com países que ainda estão em fase de transformação e com isso avaliar áreas onde poderiam ser estimuladas a fim de acelerar o processo de desenvolvimento.
 Nesse micro estudo foram escolhidos o Reino Unido, como representante de potência econômica e o Brasil.
 O propósito da análise é comparar e identificar o quão distante ainda estamos do Reino Unido em termos de indicadores de desenvolvimento.
 
 <br>
-## 2. Dados Utilizados
 
-###+2.1 Descrição dos países
+###3. Descrição dos países
 
-####+2.1.1 Reino Unido
+####3.1 Reino Unido
 
 O Reino Unido é regido por um sistema parlamentar, cuja sede está localizada na cidade de Londres, a capital, e por uma monarquia constitucional em que a rainha é a chefe de Estado.
-O país foi a primeira potência mundial no século XIX e primeira metade do século XX. Após a participação nas duas grandes guerras, o país passou por um declínio, mas hoje já é considerado como a sexta maior economia do mundo. Na segunda metade do s?culo XX se envolveu ainda num conflito armado com a Argentina durante o período de reformas sociais do governo da primeira ministra Margaret Thatcher. E mais recentemente tem apoiado militarmente os Estados Unidos da América nos conflitos no oriente m?dio.
+O país foi a primeira potência mundial no século XIX e primeira metade do século XX. Após a participação nas duas grandes guerras, o país passou por um declínio, mas hoje já é considerado como a sexta maior economia do mundo. Na segunda metade do século XX se envolveu ainda num conflito armado com a Argentina durante o período de reformas sociais do governo da primeira ministra Margaret Thatcher. E mais recentemente tem apoiado militarmente os Estados Unidos da América nos conflitos no oriente médio.
 
-####+2.1.2 Brasil
+####3.2 Brasil
 
 O maior país da América Latina, sendo o quinto maior do mundo em área territorial e população. Durante a primeira metade do século XX, no período de 1930 a 1945 o país viveu sob um regime de ditadura. Na segunda metade do século XX, entre os anos de 1964-1985, houve um novo período de governo ditatorial, sob o regime militar, retornando então ao sistema presidencialista.
 Atualmente, o país está entre as 10 maiores economias mundiais. Ao longo do século XX o país passou por diversos períodos de alta inflação:
@@ -42,11 +37,11 @@ Atualmente, o país está entre as 10 maiores economias mundiais. Ao longo do s�
 -----------------------|-----------------------
 Período                | índice de Inflação
 -----------------------|-----------------------
-D?cada de 1930         | média anual de 6,1%
-D?cada de 1940         | média anual de 12,3%
-D?cada de 1950         | 19,5%
-D?cadas de 1960 e 1970 | 40,1%
-D?cada de 1980         | 330%
+Década de 1930         | média anual de 6,1%
+Década de 1940         | média anual de 12,3%
+Década de 1950         | 19,5%
+Décadas de 1960 e 1970 | 40,1%
+Década de 1980         | 330%
 Entre 1990 a 1994      | média anual de 764%
 Entre 1995 a 2000      | média anual de 8,6%
 -----------------------|-----------------------
@@ -54,26 +49,28 @@ Entre 1995 a 2000      | média anual de 8,6%
 
 ######Fonte: http://pt.wikipedia.org/wiki/Infla%C3%A7%C3%A3o#Hist.C3.B3rico_do_quadro_inflacion.C3.A1rio_no_Brasil
 
+<br>
 
-###+2.2 Indicadores e períodos analisados
+###3.2 Indicadores e períodos analisados
 
-População Total
-Percentual da População com 0 a 14 anos de idade
-Percentual da População com 15 a 64 anos de idade
-Percentual da População com 65 anos idade ou mais
-PIB per capita (USD)
-Gastos em saúde per capita (USD)
-Percentual de Gastos em saúde per capita em relação ao PIB per capita
-Percentual da população com acesso a serviços sanitários
-Taxa de Mortalidade infantil (por 1000 nascidos)
-Expectativa de vida ao nascer
+- População Total
+- Percentual da População com 0 a 14 anos de idade
+- Percentual da População com 15 a 64 anos de idade
+- Percentual da População com 65 anos idade ou mais
+- PIB per capita (USD)
+- Gastos em saúde per capita (USD)
+- Percentual de Gastos em saúde per capita em relação ao PIB per capita
+- Percentual da população com acesso a serviços sanitários
+- Taxa de Mortalidade infantil (por 1000 nascidos)
+- Expectativa de vida ao nascer
 
 <br>
-## 3. Análise Exploratória
 
-O objetivo é apresentar tendências e fatos importantes na análise. Usaremos as seguintes bibliotecas na análise:
+### 4. Análise Exploratória
 
-```{r}
+O objetivo é apresentar tendências e fatos importantes na análise. Primeiramente, carregamos as bibliotecas necessárias para a análise e. O período a avaliado compreende dos anos 1960 à 2010. 
+
+```{r, message=F, warning=F}
 library(gcookbook)
 library(ggplot2)
 library(WDI)
@@ -81,8 +78,132 @@ library(psych)
 library(plotrix)
 library(grid)
 library(gridExtra)
+
+dados <- read.csv(file="dados.csv",head=TRUE,sep=";")
+head(dados)
+
+DF5 <- WDI(country=c("GB","BR"), indicator = "SH.STA.ACSN", start=1960, end=2014)
+
+paises <- countries
+
+Br_Gbr <- subset(paises, paises$Code == "BRA" | paises$Code == "GBR")
+Br_Gbr$Code <- factor(Br_Gbr$Code)
+Br_Gbr$Name <- factor(Br_Gbr$Name)
+
+#Muda o nome dos campos de sigla para Code e ano para Year 
+
+names(dados)[names(dados)=="sigla"] <- "Code"
+names(dados)[names(dados)=="ano"] <- "Year"
+
+#Cria o subset do data franme dados para os anos de 1960 a 2010.
+
+dados_aux <- subset(dados, dados$Year <= 2010)
+DF5_aux <- subset(DF5, DF5$year <= 2010)
+
+names(DF5_aux)[names(DF5_aux)=="year"] <- "Year"
+names(DF5_aux)[names(DF5_aux)=="iso2c"] <- "Code"
+names(DF5_aux)[names(DF5_aux)=="country"] <- "Name"
+
+DF5_aux$Code[DF5_aux$Code == "BR"] <- "BRA"
+DF5_aux$Code[DF5_aux$Code == "GB"] <- "GBR"
+DF5_aux$Code = factor(DF5_aux$Code)
+
+DF5_aux <-DF5_aux[order(DF5_aux$Name,DF5_aux$Year),]
+DF5_aux$Name <- NULL
+
+Br_Gbr <- merge(Br_Gbr, dados_aux,  c("Code","Year"))
+Br_Gbr <- merge(Br_Gbr, DF5_aux,  c("Code","Year"))
+
+head(Br_Gbr)
+
+reduz_brgbr <- c("Code", "Year","SP.POP.0014.TO.ZS")
+brgbr <- Br_Gbr[reduz_brgbr]
+br1 <- subset(brgbr, brgbr$Code == "BRA")
+gb1 <- subset(brgbr, brgbr$Code == "GBR")
+
+reduz_brgbr <- c("Code", "Year","SP.POP.1564.TO.ZS")
+brgbr <- Br_Gbr[reduz_brgbr]
+br2 <- subset(brgbr, brgbr$Code == "BRA")
+gb2 <- subset(brgbr, brgbr$Code == "GBR")
+
+reduz_brgbr <- c("Code", "Year","SP.POP.65UP.TO.ZS")
+brgbr <- Br_Gbr[reduz_brgbr]
+br3 <- subset(brgbr, brgbr$Code == "BRA")
+gb3 <- subset(brgbr, brgbr$Code == "GBR")
+
+
+Br_Gbr["Pop_Tot"] = (Br_Gbr$SP.POP.TOTL)/1000000
+
+yearlabels<-c(1960:2010)
 ```
 
-Período a avaliado: 1960 a 2010
+<br>
 
-## 4. Conclus?o
+A seguir plotamos os gráficos correlacionando diversas variáveis:
+
+```{r, message=F,warning=F}
+ggplot(Br_Gbr, aes(Year, Pop_Tot, color=Name)) + geom_line(stat="identity") +
+ggtitle("Evolução da população 1960-2010") + ylim(0,200) + ylab("População em milhões")
+
+par(mar=pyramid.plot(br1$SP.POP.0014.TO.ZS,gb1$SP.POP.0014.TO.ZS,
+                     top.labels=c("BRA","0-14 YEARS","GBR"),labels=yearlabels,
+                     main="Evolução da pirâmide populacional de 0-14 anos",lxcol="blue",rxcol= "red",
+                     gap=3,space=0.25, labelcex=0.5,show.values=F))
+
+par(mar=pyramid.plot(br2$SP.POP.1564.TO.ZS,gb2$SP.POP.1564.TO.ZS,
+                     top.labels=c("BRA","15-64 YEARS","GBR"),labels=yearlabels,
+                     main="Evolução da pirâmide populacional de 15-64 anos",lxcol="blue",rxcol= "red",
+                     gap=3,space=0.25, labelcex=0.5,show.values=F))
+
+par(mar=pyramid.plot(br3$SP.POP.65UP.TO.ZS,gb3$SP.POP.65UP.TO.ZS,
+                     top.labels=c("BRA","65-UP YEARS","GBR"),labels=yearlabels,
+                     main="Evolução da pirâmide populacional acima de 65 anos",lxcol="blue",rxcol= "red",
+                     gap=3,space=0.25, labelcex=0.5,show.values=F))
+
+describeBy(Br_Gbr$SP.POP.TOTL, Br_Gbr$Code)
+
+describeBy(Br_Gbr$SP.POP.0014.TO.ZS, Br_Gbr$Code)
+describeBy(Br_Gbr$SP.POP.1564.TO.ZS, Br_Gbr$Code)
+describeBy(Br_Gbr$SP.POP.65UP.TO.ZS, Br_Gbr$Code)
+
+ggplot(Br_Gbr, aes(Year, GDP, color=Name)) + geom_line(stat="identity") +
+ggtitle("PIB per capita 1960-2010")
+describeBy(Br_Gbr$GDP, Br_Gbr$Code)
+
+Br_Gbr["PERC.HEALTHEXP.GDP"] = (Br_Gbr$healthexp/Br_Gbr$GDP)*100
+
+gh1 <- ggplot(Br_Gbr, aes(Year, healthexp, color=Name))+geom_line(stat="identity") +
+  ggtitle("Gasto em educação per Capita 1995-2010")
+
+gh2 <- ggplot(Br_Gbr, aes(Year, PERC.HEALTHEXP.GDP, color=Name))+geom_line(stat="identity") +
+  ggtitle("Gasto em educação per Capita 1995-2010")
+
+gh3 <- ggplot(Br_Gbr, aes(Year, infmortality , color=Name))+geom_line(stat="identity") +
+  ggtitle("Mortalidade infantil per 1000 - 1995-2010")
+
+gh4 <- ggplot(Br_Gbr, aes(Year, SP.DYN.LE00.IN , color=Name))+geom_line(stat="identity") +
+  ggtitle("Evolução da Expectativa de vida 1960-2010")
+
+grid.arrange(gh1, gh2)
+
+describeBy(Br_Gbr$healthexp, Br_Gbr$Code)
+describeBy(Br_Gbr$PERC.HEALTHEXP.GDP, Br_Gbr$Code)
+
+ggplot(Br_Gbr, aes(Year, SH.STA.ACSN, color=Name)) +geom_line(stat="identity") +
+  ggtitle("Aumento no investimento em vigilância sanitária 1995-2010")
+describeBy(Br_Gbr$SH.STA.ACSN, Br_Gbr$Code)
+
+grid.arrange(gh3, gh4)
+describeBy(Br_Gbr$infmortality, Br_Gbr$Code)
+describeBy(Br_Gbr$SP.DYN.LE00.IN, Br_Gbr$Code)
+```
+
+<br>
+
+### 5. Conclusão
+
+Diante das análises é possível perceber que com um maior PIB, e provavelmente com um bom planejamento, é possível realizar mais investimentos em áreas de saúde, educação e saneamento básico. Por consequência, a qualidade e expectativa de vida da população aumenta consideravelmente, o que é indicado pelo gráfico de envelhecimento populacional. Como podemos ver também, o Brasil, apesar de abaixo do Reino Unido, vem melhorando a expectativa de vida da população, e diminuindo a mortalidade infantil.
+
+<br>
+
+Também notamos que houve uma política de controle de natalidade no Reino Unido, pois a população se manteve constante no período analisado, enquanto que no Brasil houve um crescimento populacional desordenado.
